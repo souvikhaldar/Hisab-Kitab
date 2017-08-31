@@ -50,8 +50,8 @@ def register():
         headers = {'Content-Type' : 'application/json'}
 
         r = requests.post(url, data=json.dumps(data), headers=headers)
-        a=r.json()
-        token=a['auth_token']
+        #a=r.json()
+        #token=a['auth_token']
 
         #return json.dumps(r.json(), indent=4)
         #return r['auth_token']
@@ -81,7 +81,7 @@ def login():
         token=a['auth_token']
         if token:
             flash('You are now logged in','success')
-            return redirect(url_for('dashboard'))
+            return redirect(url_for('about'))
         else:
             error='Password wrong'
             return render_template('login.html',error=error)
