@@ -51,9 +51,7 @@ def register():
 
         r = requests.post(url, data=json.dumps(data), headers=headers)
 
-        a=json.dumps(r.json())
-        b=a['auth_token']
-        return b
+        return json.dumps(r.json(), indent=4)
         #return r['auth_token']
         '''
         mysqldb things:-
