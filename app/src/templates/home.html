@@ -1,0 +1,24 @@
+{% extends 'layout.html'%}
+{% block body %}
+  <div class="jumbotron text-center">
+  <h1>Welcome to Hisab-Kitab</h1><hr>
+  <h3>"Money saved is money earned"</h3>
+	
+  <p class="lead">This is the principle that we have been following since ages but how efficiently we do it makes all the difference!
+     Generally I’ve seen people write down their daily expenses in the pocket dairy to keep track of it.
+    But is it a good way? Of course not!</p>
+    <p class="lead">
+      Diary might get misplaced, writing down is troublesome, need to carry extra pen or pencil, need to calculate manually,organising issue and many more difficulties we face.
+      So to beat these issues here is my app where you can easily insert your expenses (just like writing it down but without pencil or pen), edit them and at the end a given period of time (chosen by you) it will show the total expenditure, where maximum expense occurred and many more useful information.
+    </p>
+    <p class="lead">
+      All these information put together can even help you plan your budget well. Recognise the mistake in the pattern you spend and consecutively you’ll be able to rectify it and adopt a better budget plan.
+       Hence, it will act as the saviour for the commoners by helping save their hard earned money!
+    </p>
+    {% if session.logged_in==NULL %}
+    	<a href="/register" class="btn btn-primary btn-lg">Register</a>
+    	<a href="/login" class="btn btn-success btn-lg">Login</a>
+    {% endif %}
+
+  </div>
+{% endblock %}
