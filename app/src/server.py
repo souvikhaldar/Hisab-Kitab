@@ -83,7 +83,7 @@ def login():
             if r.status_code==200:
                 if token:
                     flash("You are now logging in","success")
-                    return redirect(url_for('home'))
+                    return redirect(url_for('index'))
                 else:
                     flash('Password wrong','warning')
                     return redirect(url_for('login'))
