@@ -51,8 +51,7 @@ def register():
 
         r = requests.post(url, data=json.dumps(data), headers=headers)
         a=r.json()
-        b=a['auth_token']
-        return b
+        token=a['auth_token']
 
         #return json.dumps(r.json(), indent=4)
         #return r['auth_token']
