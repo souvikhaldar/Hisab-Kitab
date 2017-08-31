@@ -80,7 +80,7 @@ def login():
         a=r.json()
         token=a['auth_token']
         try:
-            if token!= NULL:
+            if token:
                 flash('You are now logged in','success')
                 return redirect(url_for('about'))
             else:
