@@ -30,8 +30,8 @@ def about():
 
 class RegisterForm(Form):
 	name=StringField('Name',[validators.Length(min=1,max=30)])
-	username=StringField('Username',[validators.Length(min=5,max=100)])
-	email=StringField('Email',[validators.Length(min=5,max=50)])
+	username=StringField('Username',[validators.Length(min=1,max=100)])
+	email=StringField('Email',[validators.Length(min=1,max=50)])
 	password=PasswordField('Password',[
 		validators.DataRequired(),
 		validators.EqualTo('confirm',message='Passwords do not match')
@@ -46,7 +46,7 @@ def register():
         username=form.username.data
         password=form.password.data
         url = 'http://auth.c100.hasura.me/'
-        data = {'username': username, 'password': password}
+        data = {'username': 'username', 'password': 'password'}
         headers = {'Content-Type' : 'application/json'}
 
         r = requests.post(url, data=json.dumps(data), headers=headers)
