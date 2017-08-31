@@ -64,3 +64,53 @@ def register():
         flash('You are now registered','success')
         return redirect(url_for('index'))
     return render_template('register.html',form=form)
+
+#login part
+@app.route('/login',methods=['GET','POST'])
+def login():
+    if request.method=='POST':
+        username= request.form['username']
+        password=request.form['password']
+        #making request to login endpoint
+        url = 'http://auth.c100.hasura.me/login'
+        data = {'username': username, 'password': password}
+        headers = {'Content-Type' : 'application/json'}
+
+        r = requests.post(url, data=json.dumps(data), headers=headers)
+        a=r.json()
+        token=a['auth_token']
+        if token:
+            flash('You are now logged in','success')
+            return redirect(url_for('dashboard'))
+        else:
+            error='Password wrong'
+            return render_template('login.html',error=error)
+
+
+
+        '''
+        old mysqldb version:-
+        cur=mysql.connection.cursor()
+
+        #get user by username
+        result=cur.execute("select * from users where username=%s",[username])
+        if result>0:
+            data=cur.fetchone()
+            password=data['password']
+            #compare the passwords
+            if sha256_crypt.verify(password_candidate,password):
+                session['logged_in']=True
+                session['username']=username
+                flash('You are now logged in','success')
+                return redirect(url_for('dashboard'))
+            else:
+                error='Password wrong'
+                return render_template('login.html',error=error)
+            #close connection
+            cur.close()
+        else:
+            error='Username not found'
+            return render_template('login.html',error=error)
+            '''
+
+    return render_template('login.html')
