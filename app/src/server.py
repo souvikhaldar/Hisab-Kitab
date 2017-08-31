@@ -91,7 +91,7 @@ def login():
         except Exception as e:
             print(e)
             flash("Invalid Credentials","warning")
-			return redirect(url_for('about'))
+            return redirect(url_for('login'))
 
 
 
