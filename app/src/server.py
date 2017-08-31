@@ -79,12 +79,20 @@ def login():
         r = requests.post(url, data=json.dumps(data), headers=headers)
         a=r.json()
         token=a['auth_token']
-        if token:
-            flash('You are now logged in','success')
-            return redirect(url_for('about'))
-        else:
-            error='Password wrong'
-            return render_template('login.html',error=error)
+        try:
+            if token!= NULL:
+                flash('You are now logged in','success')
+                return redirect(url_for('about'))
+            else:
+                error='Password wrong'
+                return render_template('login.html',error=error)
+
+
+        except Exception as e:
+			print(e)
+
+			flash("Invalid Credentials","warning")
+			return redirect(url_for('login'))
 
 
 
