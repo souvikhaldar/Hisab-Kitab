@@ -46,7 +46,7 @@ def register():
         username=form.username.data
         password=form.password.data
         url = 'http://auth.c100.hasura.me/signup'
-        data = {'username': 'username', 'password': 'password'}
+        data = {'username': username, 'password': password}
         headers = {'Content-Type' : 'application/json'}
 
         r = requests.post(url, data=json.dumps(data), headers=headers)
