@@ -75,22 +75,29 @@ def login():
         url = 'http://auth.c100.hasura.me/login'
         data = {'username': username, 'password': password}
         headers = {'Content-Type' : 'application/json'}
-
-        r = requests.post(url, data=json.dumps(data), headers=headers)
-        a=r.json()
-        token=a['auth_token']
         try:
-            if token:
-                flash('You are now logged in','success')
-                return redirect(url_for('about'))
+
+            r = requests.post(url, data=json.dumps(data), headers=headers)
+            a=r.json()
+            token=a['auth_token']
+            if r.status_code==200:
+                if token:
+                    flash("You are now logging in","success")
+                    return redirect(url_for('about'))
+                else:
+                    flash('Password wrong','warning')
+                    return redirect(url_for('login'))
+
+
             else:
-                error='Password wrong'
-                return render_template('login.html',error=error)
+                error='Something is fishy! Try again.'
+                flash(error,"warning")
+                return redirect(url_for('login'))
 
 
         except Exception as e:
             print(e)
-            flash("Invalid Credentials","warning")
+            flash("Invalid Credentials or Credentials don't match","warning")
             return redirect(url_for('login'))
 
 
