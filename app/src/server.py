@@ -127,6 +127,7 @@ def dashboard():
         print('The type is ',r)
 
         articles=r.json()
+        print("current user"+request.headers.get('X-Remote-User'))
         return render_template('dashboard.html',articles=articles)
 
     except Exception as e:
