@@ -125,7 +125,8 @@ def dashboard():
         articles=r.json()
         return render_template('dashboard.html',articles=articles)
         username=user_info()
-        
+        print(username)
+
     except Exception as e:
         print(e)
 
