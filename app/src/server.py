@@ -113,7 +113,7 @@ def dashboard():
     try:
         r = requests.post(url, data=json.dumps(query), headers=headers)
         print('The type is ',r)
-        print("currently logged in",session['username'])
+
         articles=r.json()
         print(articles)
         return render_template('dashboard.html',articles=articles)
@@ -142,9 +142,8 @@ def dashboard():
 @is_logged_in
 def logout():
 
-    url = 'http://auth.c100.hasura.me/user/logout'
-    headers = {'Content-Type' : 'application/json','Authorization':'Bearer '+token}
-
+    url = 'http://auth.hasura/user/logout'
+    headers = {'Content-Type' : 'application/json','X-Hasura-User-Id': '1','X-Hasura-Role': 'admin'}
     r = requests.post(url, headers=headers)
     a=r.json()
     print(a['message'])
