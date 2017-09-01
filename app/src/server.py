@@ -31,7 +31,7 @@ def about():
 
 def user_info():
     url = 'http://auth.hasura/user/account/info'
-    headers = {'Content-Type' : 'application/json','X-Hasura-User-Id': '1','X-Hasura-Role': 'admin'}
+    headers = {'Content-Type' : 'application/json'}
     d = requests.post(url, headers=headers)
     print(d)
     f=d.json()
