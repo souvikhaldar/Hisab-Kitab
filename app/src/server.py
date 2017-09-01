@@ -120,10 +120,10 @@ def dashboard():
 
         url = 'http://auth.hasura/user/account/info'
         headers = {'Content-Type' : 'application/json','X-Hasura-User-Id': '1','X-Hasura-Role': 'admin'}
-        r = requests.post(url, headers=headers)
-        a=r.json()
-        print(a['username'])
-        return render_template('dashboard.html',articles=articles,username=a['username'])
+        d = requests.post(url, headers=headers)
+        f=d.json()
+        print(f['username'])
+        return render_template('dashboard.html',articles=articles,username=f['username'])
     except Exception as e:
         print(e)
 
