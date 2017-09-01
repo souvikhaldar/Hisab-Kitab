@@ -27,6 +27,14 @@ def index():
 @app.route('/about')
 def about():
     return render_template("about.html")
+def user_info():
+    url = 'http://auth.hasura/user/account/info'
+    headers = {'Content-Type' : 'application/json','X-Hasura-User-Id': '1','X-Hasura-Role': 'admin'}
+    d = requests.post(link, headers=headers)
+    f=d.json()
+    return f["username"]
+
+
 
 class RegisterForm(Form):
 	name=StringField('Name',[validators.Length(min=1,max=30)])
@@ -115,15 +123,9 @@ def dashboard():
         print('The type is ',r)
 
         articles=r.json()
-
-        #user info
-        link = 'http://auth.hasura/user/account/info'
-        head = {'Content-Type' : 'application/json','X-Hasura-User-Id': '1','X-Hasura-Role': 'admin'}
-        d = requests.post(link, headers=head)
-        print(d)
-        f=d.json()
-        print('data',f)
         return render_template('dashboard.html',articles=articles)
+        username=user_info()
+        
     except Exception as e:
         print(e)
 
