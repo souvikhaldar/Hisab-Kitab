@@ -139,7 +139,7 @@ def dashboard():
 
 #log out
 @app.route('/logout')
-@is_logged_in
+#@is_logged_in
 def logout():
 
     url = 'http://auth.hasura/user/logout'
