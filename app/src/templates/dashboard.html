@@ -1,7 +1,5 @@
 {% extends 'layout.html' %}
 {%  block body %}
-Hi!
-<!--
 <h1>Dashboard of Expenditures  <small>Welcome {{session.username}}</small> </h1><hr><br>
 
 <a class="btn btn-success" href="/add_article">Add expenditure</a>
@@ -23,18 +21,18 @@ Hi!
 			<td>{{article.body}}</td>
 			<td>{{article.create_date}}</td>
 
-			<td>
+			<!-- delete button
 
+			<td>
 			<form class="" action="{{url_for('delete_article',id=article.id)}}" method="POST">
 				<input type="hidden" name="_method" value="DELETE">
 				<input type="submit" value="Delete" class="btn btn-danger">
 			</form>
-		</td>
+		</td> -->
 		</tr>
 		{% endif %}
 	{% endfor %}
 
 </table>
 		<a href="/insights" class="btn btn-info">Draw Insights</a></td>
-		-->
 {% endblock %}
