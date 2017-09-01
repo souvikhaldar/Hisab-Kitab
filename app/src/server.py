@@ -75,33 +75,28 @@ def login():
         url = 'http://auth.c100.hasura.me/login'
         data = {'username': username, 'password': password}
         headers = {'Content-Type' : 'application/json'}
+
+        r = requests.post(url, data=json.dumps(data), headers=headers)
+        a=r.json()
         try:
-
-            r = requests.post(url, data=json.dumps(data), headers=headers)
-            a=r.json()
-            token=a['auth_token']
-            if r.status_code==200:
-                if token:
-                    flash("You are now logged in","success")
-                    print(token)
-                    return redirect(url_for('index'))
-                else:
-                    flash('Password wrong','warning')
-                    return redirect(url_for('login'))
-
-
-            else:
-                error='Something is fishy! Try again.'
-                flash(error,"warning")
-                return redirect(url_for('login'))
-
-
+            message=a['message']
+            print(message)
+            error='Something is fishy! Try again.'
+            flash(error,"warning")
+            return redirect(url_for('login'))
         except Exception as e:
+            print(e)
+            token=a['auth_token']
+            flash("You are now logged in","success")
+            print(token)
+            return redirect(url_for('index'))
+
+
+        '''except Exception as e:
             print(e)
             flash("Invalid Credentials or Credentials don't match","warning")
             return redirect(url_for('login'))
-
-
+            '''
 
         '''
         old mysqldb version:-
