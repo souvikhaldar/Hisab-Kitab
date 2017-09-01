@@ -135,7 +135,7 @@ def dashboard():
 
 #add article
 @app.route('/add_expense',methods=['GET','POST'])
-@is_logged_in
+#@is_logged_in
 def add_expense():
     form=ArticleForm(request.form)
     if request.method=='POST' and form.validate():
