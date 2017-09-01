@@ -102,6 +102,14 @@ def login():
             token=a['auth_token']
             flash("You are now logged in","success")
             print("the token is "+token)
+            def user_info():
+                link = 'http://auth.c100.hasura.me/user/account/info'
+                headers = {'Content-Type' : 'application/json','Authorization':'Bearer '+token}
+                d = requests.post(link, headers=headers)
+                print(d)
+                f=d.json()
+                print(f)
+                return f
             return redirect(url_for('dashboard'))
 
     return render_template('login.html')
