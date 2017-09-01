@@ -27,10 +27,12 @@ def index():
 @app.route('/about')
 def about():
     return render_template("about.html")
+
+
 def user_info():
     url = 'http://auth.hasura/user/account/info'
     headers = {'Content-Type' : 'application/json','X-Hasura-User-Id': '1','X-Hasura-Role': 'admin'}
-    d = requests.post(link, headers=headers)
+    d = requests.post(url, headers=headers)
     f=d.json()
     return f["username"]
 
