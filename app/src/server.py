@@ -115,7 +115,6 @@ def dashboard():
         print('The type is ',r)
         articles=r.json()
         print(articles)
-        print(dict(articles))
         return render_template('dashboard.html',articles=articles)
     except Exception as e:
         print(e)
