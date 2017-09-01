@@ -145,10 +145,11 @@ def add_expense():
         url = 'http://data.hasura/v1/query'
         query = {  "type" : "insert",
          "args" : {
-           "table"     : "post",
+           "table"     : "expenditure",
            "objects"   : [
              {
                "expense"   : expense,
+               "author":"souvikhaldar",
                "amount" : amount
              }
            ]
