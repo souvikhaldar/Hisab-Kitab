@@ -117,13 +117,12 @@ def dashboard():
         articles=r.json()
 
         #user info
-        url = 'http://auth.hasura/user/account/info'
-        headers = {'Content-Type' : 'application/json','X-Hasura-User-Id': '1','X-Hasura-Role': 'admin'}
-        d = requests.post(url, headers=headers)
+        link = 'http://auth.hasura/user/account/info'
+        head = {'Content-Type' : 'application/json','X-Hasura-User-Id': '1','X-Hasura-Role': 'admin'}
+        d = requests.post(link, headers=head)
         print(d)
         f=d.json()
-        print("data",f)
-        print(f['username'])
+        print('data',f)
         return render_template('dashboard.html',articles=articles)
     except Exception as e:
         print(e)
