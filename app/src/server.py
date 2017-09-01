@@ -115,6 +115,15 @@ def dashboard():
         print('The type is ',r)
 
         articles=r.json()
+
+        #user info
+        url = 'http://auth.hasura/user/account/info'
+        headers = {'Content-Type' : 'application/json','X-Hasura-User-Id': '1','X-Hasura-Role': 'admin'}
+        d = requests.post(url, headers=headers)
+        print(d)
+        f=d.json()
+        print("data",f)
+        print(f['username'])
         return render_template('dashboard.html',articles=articles)
     except Exception as e:
         print(e)
