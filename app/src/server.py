@@ -113,6 +113,7 @@ def dashboard():
     try:
         r = requests.post(url, data=json.dumps(query), headers=headers)
         print('The type is ',r)
+        print("currently logged in",session['username'])
         articles=r.json()
         print(articles)
         return render_template('dashboard.html',articles=articles)
