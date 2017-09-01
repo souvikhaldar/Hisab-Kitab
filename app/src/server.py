@@ -34,7 +34,7 @@ def user_info():
     headers = {'Content-Type' : 'application/json','X-Hasura-User-Id': '1','X-Hasura-Role': 'admin'}
     d = requests.post(url, headers=headers)
     f=d.json()
-    return f["username"]
+    return f
 
 
 
@@ -127,7 +127,7 @@ def dashboard():
         articles=r.json()
 
         user=user_info()
-        print(user)
+        print(user['username'])
         return render_template('dashboard.html',articles=articles)
 
     except Exception as e:
