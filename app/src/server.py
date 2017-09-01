@@ -133,18 +133,49 @@ def dashboard():
         print(e)
 
 
+#add article
+@app.route('/add_expense',methods=['GET','POST'])
+@is_logged_in
+def add_expense():
+    form=ArticleForm(request.form)
+    if request.method=='POST' and form.validate():
+        expense=form.expense.data
+        amount=form.amount.data
 
-    '''create cursor
-    cur=mysql.connection.cursor()
-    result=cur.execute("select * from articles")
-    articles=cur.fetchall()
-    if result>0:
-        return render_template('dashboard.html',articles=articles)
-    else:
-        msg="No expenditures found"
-        return render_template('dashboard.html',msg=msg)
-    #close connection
-    cur.close()'''
+        url = 'http://data.hasura/v1/query'
+        query = {  "type" : "insert",
+         "args" : {
+           "table"     : "post",
+           "objects"   : [
+             {
+               "expense"   : expense,
+               "amount" : amount
+             }
+           ]
+         }
+      }
+        headers = {'Content-Type' : 'application/json','X-Hasura-User-Id': '1','X-Hasura-Role': 'admin'}
+        try:
+            r = requests.post(url, data=json.dumps(query), headers=headers)
+            print('The response is ',r)
+
+            flash('expenditure listed','success')
+            return redirect(url_for('dashboard'))
+
+        except Exception as e:
+            print(e)
+
+
+        '''
+        #create cursor
+        cur=mysql.connection.cursor()
+
+        cur.execute("insert into articles(title,body,author) values(%s,%s,%s)",(expense,amount,session['username']))
+        #commit
+        mysql.connection.commit()
+        #close connection
+        cur.close()'''
+    return render_template('add_article.html',form=form)
 
 
 
