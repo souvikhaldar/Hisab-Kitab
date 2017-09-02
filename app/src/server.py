@@ -151,7 +151,7 @@ def add_expense():
            "objects"   : [
              {
                "expense"   : expense,
-               "author":"souvikhaldar",
+               "author":session['username'],
                "amount" : amount
              }
            ]
