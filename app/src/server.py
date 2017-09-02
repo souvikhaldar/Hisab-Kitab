@@ -101,6 +101,8 @@ def login():
         except Exception as e:
             print(e)
             token=a['auth_token']
+            session['username']=username
+            session['logged_in']=True
             flash("You are now logged in","success")
             print("the token is "+token)
             return redirect(url_for('dashboard'))
