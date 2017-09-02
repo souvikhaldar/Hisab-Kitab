@@ -188,7 +188,7 @@ def add_expense():
 @app.route('/logout')
 #@is_logged_in
 def logout():
-
+    session.clear()
     url = 'http://auth.hasura/user/logout'
     headers = {'Content-Type' : 'application/json','X-Hasura-User-Id': '1','X-Hasura-Role': 'admin'}
     r = requests.post(url, headers=headers)
