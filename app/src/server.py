@@ -128,8 +128,6 @@ def dashboard():
         print('The type is ',r)
 
         articles=r.json()
-        f=user_info()
-        print("user info"+f)
         return render_template('dashboard.html',articles=articles)
 
     except Exception as e:
