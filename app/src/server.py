@@ -200,7 +200,7 @@ def insights():
         print('The type is ',r)
 
         insights=r.json()
-        return render_template('dashboard.html',insights=insights)
+        return render_template('insights.html',insights=insights)
 
     except Exception as e:
         print(e)
