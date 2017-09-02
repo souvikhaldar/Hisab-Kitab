@@ -191,7 +191,8 @@ def insights():
         "table": "insights",
         "columns": [
             "*"
-        ]
+        ],
+        "where":{"id":session['username']}
     }
 }
     headers = {'Content-Type' : 'application/json','X-Hasura-User-Id': '1','X-Hasura-Role': 'admin'}
