@@ -70,7 +70,6 @@ def register():
 
         r = requests.post(url, data=json.dumps(data), headers=headers)
         a=r.json()
-        print("User registered"+a)
         #token=a['auth_token']
 
         #return json.dumps(r.json(), indent=4)
