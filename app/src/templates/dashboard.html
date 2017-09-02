@@ -14,12 +14,14 @@
 		<th></th>
 	</tr>
 	{% for article in articles %}
+	{% if article['username']==session.username %}
 		<tr>
 			<td>{{ article['expense'] }}</td>
 			<td>{{ article['author'] }}</td>
 			<td>{{ article['amount'] }}</td>
 			<td>{{ article['create_date'] }}</td>
 		</tr>
+		{% endif %}
 	{% endfor %}
 
 </table>
