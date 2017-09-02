@@ -31,7 +31,7 @@ def about():
 
 def user_info():
     url = 'http://auth.hasura/user/account/info'
-    headers = {'Content-Type' : 'application/json'}
+    headers = {'Content-Type' : 'application/json','X-Hasura-User-Id': '1','X-Hasura-Role': 'admin'}
     d = requests.post(url, headers=headers)
     print(d)
     f=d.json()
@@ -69,7 +69,8 @@ def register():
         headers = {'Content-Type' : 'application/json'}
 
         r = requests.post(url, data=json.dumps(data), headers=headers)
-        #a=r.json()
+        a=r.json()
+        print("User registered"+a)
         #token=a['auth_token']
 
         #return json.dumps(r.json(), indent=4)
@@ -127,6 +128,8 @@ def dashboard():
         print('The type is ',r)
 
         articles=r.json()
+        f=user_info()
+        print("user info"+f)
         return render_template('dashboard.html',articles=articles)
 
     except Exception as e:
