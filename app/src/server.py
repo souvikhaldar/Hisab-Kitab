@@ -85,9 +85,9 @@ def login():
         username= request.form['username']
         password=request.form['password']
         #making request to login endpoint
-        url = 'http://auth.c100.hasura.me/login'
+        url = 'http://auth.hasura/login'
         data = {'username': username, 'password': password}
-        headers = {'Content-Type' : 'application/json'}
+        headers = {'Content-Type' : 'application/json','X-Hasura-User-Id': '1','X-Hasura-Role': 'admin'}
 
         r = requests.post(url, data=json.dumps(data), headers=headers)
         a=r.json()
