@@ -1,12 +1,12 @@
 {% extends 'layout.html' %}
 {% block body %}
- <h1 class="text-info">The total expenditure is <mark>{{insights.sumi}}</mark> </h1>
+ <h1 class="text-info">The total expenditure is <mark>{{ insights[0]['sumi'] }}</mark> </h1>
  <br>
  <br>
-  <h1 class="text-success">The maximum expenditure is <mark>{{insights.maxi}}</mark> </h1>
+  <h1 class="text-success">The maximum expenditure is <mark>{{ insights[0]['maxi'] }}</mark> </h1>
   <br>
   <br>
-    <h1 class="text-primary">The mininum expenditure is <mark>{{insights.mini}} </mark></h1>
+    <h1 class="text-primary">The mininum expenditure is <mark>{{ insights[0]['mini'] }} </mark></h1>
     <br>
-    <h1 class="text-primary">The average expenditure is <mark>{{insights.avgi}} </mark></h1>
+    <h1 class="text-primary">The average expenditure is <mark>{{ insights[0]['avgi'] }} </mark></h1>
 {% endblock %}

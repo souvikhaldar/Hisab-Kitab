@@ -201,7 +201,6 @@ def insights():
 
         insights=r.json()
         print(insights)
-        print(insights['maxi'])
         return render_template('insights.html',insights=insights)
 
     except Exception as e:
