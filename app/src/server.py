@@ -232,6 +232,40 @@ def insights():
     cur.close()
 '''
 
+#delete article
+@app.route('/delete_article/<string:id>',methods=['POST'])
+@is_logged_in
+def delete_article(id):
+    url = 'http://data.hasura/v1/query'
+    query = {
+    "type": "delete",
+    "args": {
+        "table": "expenditure",
+        "where"  : { "id" : id }
+    }
+}
+    headers = {'Content-Type' : 'application/json','X-Hasura-User-Id': '1','X-Hasura-Role': 'admin'}
+    try:
+        r = requests.post(url, data=json.dumps(query), headers=headers)
+        print('The type is ',r)
+
+        insights=r.json()
+        print(insights)
+        return render_template('insights.html',insights=insights)
+
+    except Exception as e:
+        print(e)
+
+
+
+    '''cur=mysql.connection.cursor()
+    cur.execute("delete from articles where id=%s",[id])
+    mysql.connection.commit()
+    cur.close()'''
+
+    flash('The expenditure has been deleted','success')
+    return redirect(url_for('dashboard'))
+
 
 
 #log out
