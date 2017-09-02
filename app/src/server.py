@@ -182,6 +182,56 @@ def add_expense():
 
 
 
+@app.route('/insights',methods=['POST','GET'])
+def insights():
+    url = 'http://data.hasura/v1/query'
+    query = {
+    "type": "select",
+    "args": {
+        "table": "insights",
+        "columns": [
+            "*"
+        ]
+    }
+}
+    headers = {'Content-Type' : 'application/json','X-Hasura-User-Id': '1','X-Hasura-Role': 'admin'}
+    try:
+        r = requests.post(url, data=json.dumps(query), headers=headers)
+        print('The type is ',r)
+
+        insights=r.json()
+        return render_template('dashboard.html',insights=insights)
+
+    except Exception as e:
+        print(e)
+
+    '''
+    #create cursor
+    cur=mysql.connection.cursor()
+    result=cur.execute("select sum(body) as sum from articles where author=%s",(session['username'],))
+    insights=cur.fetchall()
+    a=list(insights[0].values())
+    result=cur.execute("select max(body) as maxi from articles where author=%s",(session['username'],))
+    maxi=cur.fetchall()
+    b=list(maxi[0].values())
+
+    #identity=session['username']
+
+    result=cur.execute("select min(body) as mini from articles where author=%s",(session['username'],))
+    mini=cur.fetchall()
+    c=list(mini[0].values())
+
+
+    #if insights>0:
+    return render_template('insights.html',insights=a[0],maxi=b[0],mini=c[0])
+    #else:
+     #   msg="No expense found"
+      #  return render_template('insights.html',msg=msg)
+    #close connection
+    cur.close()
+'''
+
+
 
 #log out
 @app.route('/logout')
