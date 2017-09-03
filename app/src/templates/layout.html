@@ -3,11 +3,17 @@
   <head>
     <meta charset="utf-8">
     <title>Hisab-Kitab</title>
+    <link href="static/style.css" rel="stylesheet">
     <!-- jQuery library -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   </head>
   <body>
+    <div id="hero">
+      <div id="hero-overlay">
+
+
+
 
     {% include 'includes/_navbar.html' %}
     <div class="container">
@@ -15,5 +21,7 @@
       {% block body %}{% endblock %}
     </div>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    </div>
+    </div>
   </body>
 </html>
