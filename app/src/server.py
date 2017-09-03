@@ -189,7 +189,7 @@ def insights():
     "type": "select",
     "args": {
         "table": "insight",
-        "columns": ['sumi','maxi','mini,'avgi'],
+        "columns": ['sumi','maxi','min','avgi'],
         "where":{
             "author":session['username']
         }
