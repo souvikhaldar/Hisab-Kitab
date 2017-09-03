@@ -188,10 +188,11 @@ def insights():
     query = {
     "type": "select",
     "args": {
-        "table": "insights",
-        "columns": [
-            "*"
-        ]
+        "table": "insight",
+        "columns": ['sumi','maxi','mini','avgi'],
+        "where":{
+            "author":session['username']
+        }
     }
 }
     headers = {'Content-Type' : 'application/json','X-Hasura-User-Id': '1','X-Hasura-Role': 'admin'}
